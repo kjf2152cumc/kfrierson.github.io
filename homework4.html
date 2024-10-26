@@ -11,7 +11,7 @@
 
 
 
-<title>P8105 Homework 4 - Interactive Communication</title>
+<title>P8105 Homework 4</title>
 
 <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -221,6 +224,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -228,6 +294,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -277,17 +353,93 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">P8105 Homework 4 - Interactive
-Communication</h1>
+<h1 class="title toc-ignore">P8105 Homework 4</h1>
 <h4 class="date">Last Updated by K. Frierson 2024-10-26</h4>
 
 </div>
 
 
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The fourth homework assignment for P8105: Data Science I requires the
+build of a website (where you are viewing this right now) and the
+implementation of a <code>plotly</code> dashboard. I will be using NYC
+restraurant inspection data from the <code>p8105.datasets</code>
+package.</p>
+</div>
+<div id="call-libraries" class="section level1">
+<h1>Call Libraries</h1>
+<p>Load packages needed for entire assignment:</p>
+<pre class="r"><code>library(p8105.datasets)
+library(tidyverse)
+library(knitr)
+library(leaflet)
+library(sf)</code></pre>
+</div>
+<div id="data-import-cleaning" class="section level1">
+<h1>Data Import &amp; Cleaning</h1>
+<p>Bring in data:</p>
+<pre class="r"><code>data(rest_inspec)</code></pre>
+<p>There is a lot of data here which would hinder easy visualization. I
+will drop rows with missing and keep only variables I am interested in.
+Also I will create a <code>violation_severity</code> variable for the
+corresponding inspection score based on definitions given on the data
+science course <a
+href="https://p8105.com/dataset_restaurant_inspections.html">website</a>:</p>
+<pre class="r"><code>inspect = 
+  rest_inspec |&gt;
+  mutate(
+    violation_severity = case_when(
+      score &gt;= 7 ~ &quot;Public Health Hazard&quot;,
+      score &gt;= 5 ~ &quot;Critical Violation&quot;,
+      score &gt;= 2 ~ &quot;General Violation&quot;,
+      TRUE ~ &quot;No Violation&quot;
+    )
+  ) |&gt; 
+  select(boro, camis, critical_flag, violation_severity,
+         cuisine_description, dba, inspection_date, score, street,
+         violation_code, violation_description, zipcode, grade, grade_date) |&gt;   
+  drop_na() </code></pre>
+</div>
+<div id="eda-exploratory-data-analysis" class="section level1">
+<h1>EDA: Exploratory Data Analysis</h1>
+<p>How many of each type of violation?</p>
+<pre class="r"><code>violation_summary =
+  inspect |&gt;
+  group_by(violation_severity) |&gt;  
+  summarize(Count = n())  |&gt; 
+  filter(violation_severity %in% c(&quot;Public Health Hazard&quot;, 
+                                   &quot;Critical Violation&quot;, &quot;General Violation&quot;))
+
+kable(violation_summary)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">violation_severity</th>
+<th align="right">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Critical Violation</td>
+<td align="right">8182</td>
+</tr>
+<tr class="even">
+<td align="left">General Violation</td>
+<td align="right">10229</td>
+</tr>
+<tr class="odd">
+<td align="left">Public Health Hazard</td>
+<td align="right">173706</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 
 
-
+</div>
+</div>
 
 </div>
 
@@ -320,6 +472,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
