@@ -1,7 +1,7 @@
 ---
-title: "read"
-author: "Kaleb J. Frierson"
-date: "2024-10-26"
 output: html_document
 ---
-
+I am almost done reading the fifth book of [George R.R. Martin's](https://georgerrmartin.com/grrm_book/a-dance-with-dragons/) series *A Song of Ice and Fire* most commonly known as "A Game of Thrones". 
+<br>
+<br>
+<img src="images/DWD.jpg">
