@@ -1,7 +1,6 @@
 ---
-title: "homework4"
-author: "Kaleb J. Frierson"
-date: "2024-10-26"
+title: "P8105 Homework 4 - Interactive Communication"
+date: "Last Updated by K. Frierson 2024-10-26"
 output: html_document
 ---
 
