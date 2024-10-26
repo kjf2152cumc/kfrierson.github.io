@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Kaleb J. Frierson" />
 
+<meta name="date" content="2024-10-26" />
 
-<title>Kaleb J. Frierson</title>
+<title>homework4</title>
 
 <script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +31,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -224,69 +223,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -294,16 +230,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -353,36 +279,17 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Kaleb J. Frierson</h1>
+<h1 class="title toc-ignore">homework4</h1>
+<h4 class="author">Kaleb J. Frierson</h4>
+<h4 class="date">2024-10-26</h4>
 
 </div>
 
 
-<p>Kaleb Frierson is a second year MPH student in Epidemiology at <a
-href="https://www.publichealth.columbia.edu/academics/departments/epidemiology">Columbia
-University</a>. He holds a Bachelor of Science in Biology from <a
-href="https://www2.cortland.edu/departments/biology/">SUNY Cortland</a>
-and is licensed by the New York Health Department as an Advanced EMT.
-Throughout his undergraduate education, Kaleb worked in the <a
-href="https://www2.cortland.edu/departments/biology/faculty/davalos.dot">Dávalos
-lab</a> investigating the individual and cumulative effects of multiple
-ecological stressors in forests of the Northeast. Now he is putting his
-public health education and research skills to work while developing his
-Master’s Thesis with <a
-href="https://www.publichealth.columbia.edu/profile/zachary-l-mannes-phd#:~:text=Zachary%20Mannes%20is%20an%20Assistant,the%20Yale%20School%20of%20Medicine.">Dr. Zachary
-Mannes</a>. Alongside Dr. Mannes, an emergency care epidemiologist,
-Kaleb hopes to characterize the prehospital needs of geriatric patients
-across NY. In May 2025, he will graduate from Columbia and plans to
-attend medical school the following fall. Outside of academia, Kaleb
-enjoys traveling, hiking, bird watching, reading, and collecting books.
-<br> <br>
-<img src="images/kaleb2.jpg" style="width:75%; display: block; margin-left: auto; margin-right: auto;">
-<br> <br></p>
 
 
 
-</div>
-</div>
+
 
 </div>
 
@@ -415,35 +322,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

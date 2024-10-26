@@ -6,8 +6,9 @@ output:
     toc_float: TRUE
 ---
 
-![](images/kaleb.jpg) 
-
-## Link to page within site 
-
-[Professional Showcase](about.html)
+Kaleb Frierson is a second year MPH student in Epidemiology at [Columbia University](https://www.publichealth.columbia.edu/academics/departments/epidemiology). He holds a Bachelor of Science in Biology from [SUNY Cortland](https://www2.cortland.edu/departments/biology/) and is licensed by the New York Health Department as an Advanced EMT. Throughout his undergraduate education, Kaleb worked in the [Dávalos lab](https://www2.cortland.edu/departments/biology/faculty/davalos.dot) investigating the individual and cumulative effects of multiple ecological stressors in forests of the Northeast. Now he is putting his public health education and research skills to work while developing his Master's Thesis with [Dr. Zachary Mannes](https://www.publichealth.columbia.edu/profile/zachary-l-mannes-phd#:~:text=Zachary%20Mannes%20is%20an%20Assistant,the%20Yale%20School%20of%20Medicine.). Alongside Dr. Mannes, an emergency care epidemiologist, Kaleb hopes to characterize the prehospital needs of geriatric patients across NY. In May 2025, he will graduate from Columbia and plans to attend medical school the following fall. Outside of academia, Kaleb enjoys traveling, hiking, bird watching, reading, and collecting books. 
+<br>
+<br>
+<img src="images/kaleb2.jpg" style="width:75%; display: block; margin-left: auto; margin-right: auto;">
+<br>
+<br>

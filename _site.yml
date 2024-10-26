@@ -3,12 +3,17 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "Professional Showcase"
+    - text: "Curriculum Vitae"
       href: about.html
+    - text: "P8105 Homework"
+      href: homework4.html
+    - text: "What is Kaleb Reading?"
+      href: read.html
     - icon: fa-envelope fa-lg
       href: mailto:<kjf2152@columbia.edu>
     - icon: fa-github fa-lg
       href: http://github.com/kjf2152cumc/
+    
 output:
   html_document:
     theme: flatly
