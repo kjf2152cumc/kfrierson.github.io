@@ -1,0 +1,146 @@
+---
+title: "Dashboard Showing Images Produced in Homework Assignment 4"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(p8105.datasets)
+library(tidyverse)
+library(knitr)
+library(leaflet)
+library(sf)
+library(viridis)
+library(plotly)
+```
+
+```{r data, include = FALSE}
+data(rest_inspec)
+
+inspect = 
+  rest_inspec |>
+  mutate(
+    violation_severity = case_when(
+      score >= 7 ~ "Public Health Hazard",
+      score >= 5 ~ "Critical Violation",
+      score >= 2 ~ "General Violation",
+      TRUE ~ "No Violation"
+    )
+  ) |> 
+  select(boro, camis, critical_flag, violation_severity,
+         cuisine_description, dba, inspection_date, score, street,
+         violation_code, violation_description, zipcode, grade, grade_date) |>
+  drop_na() 
+
+
+```
+
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### Map of NYC Showing Average Score by Zip Code
+
+```{r, warning=FALSE, message=FALSE, echo =FALSE, include=FALSE}
+
+nyc_zip_codes = st_read("data/Modified Zip Code Tabulation Areas (MODZCTA)/geo_export_e426608c-b383-45c5-8f28-cc94eb8cc12f.shp") |>
+  rename(zipcode = modzcta) |> 
+    mutate(zipcode = as.integer(zipcode))|>
+  st_transform(crs = 4326)
+
+avg_score_zip = 
+  inspect |> 
+  group_by(zipcode) |> 
+  summarize(avg_score = mean(score, na.rm = TRUE))
+
+merged_geo_data = 
+  nyc_zip_codes |>
+  left_join(avg_score_zip, by = "zipcode")
+
+pal = 
+  colorNumeric(palette = "YlOrRd", domain = merged_geo_data$avg_score, 
+               na.color = "transparent")
+
+map = 
+merged_geo_data |> 
+leaflet()|> 
+  addTiles() |> 
+  addPolygons(
+    fillColor = ~pal(avg_score),      
+    fillOpacity = 0.7,                    
+    color = "white",                       
+    weight = 1,                            
+    highlightOptions = highlightOptions(
+      weight = 5,
+      color = "blue",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Zip Code:", zipcode, "Average Score:", round(avg_score, 2)),
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", "font-size" = "12px"), 
+      textsize = "15px",
+      direction = "auto"
+    )
+  ) |> 
+  addLegend(pal = pal, values = ~avg_score, opacity = 0.7, 
+            title = "Average Score", position = "bottomright")
+
+
+```
+```{r, echo =FALSE}
+map
+```
+
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### Latest Score by Previous Health Grade 
+
+```{r, warning=FALSE, echo =FALSE}
+previously_graded =
+  inspect |>
+  mutate(
+    grade_date = as.Date(grade_date),
+    inspection_date = as.Date(inspection_date)
+  )
+
+previoulsy_graded = 
+  inspect |> 
+  filter(grade_date < inspection_date)
+
+grade_v_score =
+  previously_graded |>
+  filter(!grade %in% c("Not Yet Graded", "P", "Z")) |> 
+  ggplot(aes(x= grade, y=score)) +
+  geom_boxplot() +
+  labs(x= "Previous Health Grade", y = "Latest Inspection Score")+
+  theme_classic()
+
+grade_v_score
+```
+
+### Distribution of Violations by Severity
+
+```{r, warning=FALSE, echo =FALSE}
+histogram = 
+inspect |> 
+  filter(violation_severity != "No Violation") |> 
+   mutate(violation_severity =
+            fct_relevel(violation_severity, 
+                        "General Violation",
+                        "Critical", "Public Health Hazard")) |> 
+  ggplot(aes(x=score, fill=violation_severity))+
+  geom_histogram(alpha=0.9, binwidth = 1.9) +
+  theme_minimal() +
+  scale_fill_viridis(discrete = TRUE) +
+  xlim(0, 70)+
+  labs(x= "Health Inspection Score", y = "Count", fill = "Violation Severity")
+
+histogram
+```

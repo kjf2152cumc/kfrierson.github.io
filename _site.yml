@@ -5,8 +5,8 @@ navbar:
   right:
     - text: "Curriculum Vitae"
       href: about.html
-    - text: "P8105 Homework"
-      href: homework4.html
+    - text: "P8105 Homework Findings"
+      href: dashboard.html
     - text: "What is Kaleb Reading?"
       href: read.html
     - icon: fa-envelope fa-lg

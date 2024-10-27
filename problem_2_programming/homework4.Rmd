@@ -1,0 +1,160 @@
+---
+title: "P8105 Homework 4"
+date: "Last Updated by K. Frierson 2024-10-26"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+# Introduction
+
+The fourth homework assignment for P8105: Data Science I requires the build of a website (where you are viewing this right now) and the implementation of a `plotly` dashboard. I will be using NYC restraurant inspection data from the `p8105.datasets` package.
+
+# Call Libraries
+
+Load packages needed for entire assignment:
+```{r libraries, message=FALSE}
+library(p8105.datasets)
+library(tidyverse)
+library(knitr)
+library(leaflet)
+library(sf)
+library(viridis)
+library(plotly)
+```
+
+# Data Import & Cleaning
+
+Bring in data: 
+```{r data}
+data(rest_inspec)
+```
+
+There is a lot of data here which would hinder easy visualization. I will drop rows with missing and keep only variables I am interested in. Also I will create a `violation_severity` variable  for the corresponding inspection score based on definitions given on the data science course [website](https://p8105.com/dataset_restaurant_inspections.html): 
+```{r}
+inspect = 
+  rest_inspec |>
+  mutate(
+    violation_severity = case_when(
+      score >= 7 ~ "Public Health Hazard",
+      score >= 5 ~ "Critical Violation",
+      score >= 2 ~ "General Violation",
+      TRUE ~ "No Violation"
+    )
+  ) |> 
+  select(boro, camis, critical_flag, violation_severity,
+         cuisine_description, dba, inspection_date, score, street,
+         violation_code, violation_description, zipcode, grade, grade_date) |>
+  drop_na() 
+```
+
+
+# Descriptive Analysis
+
+How many of each type of violation?
+```{r}
+violation_summary =
+  inspect |>
+  group_by(violation_severity) |>  
+  summarize(Count = n())  |> 
+  filter(violation_severity %in% c("Public Health Hazard", 
+                                   "Critical Violation", "General Violation"))
+
+kable(violation_summary)
+
+```
+
+# Plots
+
+Lets show distribution of scores, use `vidiris` colors for maximum accessibility: 
+```{r, message=FALSE, warning=FALSE}
+histogram =
+  inspect |> 
+  filter(violation_severity != "No Violation") |> 
+   mutate(violation_severity = fct_relevel(violation_severity, "General Violation",
+                                           "Critical", "Public Health Hazard")) |> 
+  ggplot(aes(x=score, fill=violation_severity))+
+  geom_histogram(alpha=0.9, binwidth = 1.9) +
+  theme_minimal() +
+  scale_fill_viridis(discrete = TRUE) +
+  xlim(0, 70)+
+  labs(x= "Health Inspection Score", y = "Count", fill = "Violation Severity")
+    
+
+histogram
+```
+
+Lets compare previous health grade to inspection score: 
+```{r}
+
+previously_graded =
+  inspect |>
+  mutate(
+    grade_date = as.Date(grade_date),
+    inspection_date = as.Date(inspection_date)
+  )
+
+previoulsy_graded = 
+  inspect |> 
+  filter(grade_date < inspection_date)
+
+grade_v_score =
+  previously_graded |>
+  filter(!grade %in% c("Not Yet Graded", "P", "Z")) |> 
+  ggplot(aes(x= grade, y=score)) +
+  geom_boxplot() +
+  labs(x= "Previous Health Grade", y = "Latest Inspection Score")+
+  theme_classic()
+
+grade_v_score
+  
+```
+
+lets map average score by zip code: 
+```{r}
+
+nyc_zip_codes = st_read("homework4_files/Modified Zip Code Tabulation Areas (MODZCTA)/geo_export_e426608c-b383-45c5-8f28-cc94eb8cc12f.shp") |>
+  rename(zipcode = modzcta) |> 
+    mutate(zipcode = as.integer(zipcode))|>
+  st_transform(crs = 4326)
+
+avg_score_zip = 
+  inspect |> 
+  group_by(zipcode) |> 
+  summarize(avg_score = mean(score, na.rm = TRUE))
+
+merged_geo_data = 
+  nyc_zip_codes |>
+  left_join(avg_score_zip, by = "zipcode")
+
+pal = 
+  colorNumeric(palette = "YlOrRd", domain = merged_geo_data$avg_score, 
+               na.color = "transparent")
+
+map = 
+merged_geo_data |> 
+leaflet()|> 
+  addTiles() |> 
+  addPolygons(
+    fillColor = ~pal(avg_score),      
+    fillOpacity = 0.7,                    
+    color = "white",                       
+    weight = 1,                            
+    highlightOptions = highlightOptions(
+      weight = 5,
+      color = "blue",
+      fillOpacity = 0.9,
+      bringToFront = TRUE
+    ),
+    label = ~paste("Zip Code:", zipcode, "Average Score:", round(avg_score, 2)),
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", "font-size" = "12px"), 
+      textsize = "15px",
+      direction = "auto"
+    )
+  ) |> 
+  addLegend(pal = pal, values = ~avg_score, opacity = 0.7, 
+            title = "Average Score", position = "bottomright")
+
+map
+```
