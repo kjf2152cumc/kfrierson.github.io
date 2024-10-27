@@ -5,7 +5,9 @@ navbar:
   right:
     - text: "Curriculum Vitae"
       href: about.html
-    - text: "P8105 Homework Findings"
+    - text: "P8105 Health Inspections Assignment"
+      href: background.html
+    - text: "Health Inspection Dashboard"
       href: dashboard.html
     - text: "What is Kaleb Reading?"
       href: read.html

@@ -1,6 +1,6 @@
 ---
 title: "P8105 Homework 4"
-date: "Last Updated by K. Frierson 2024-10-26"
+date: "Last Updated by K. Frierson 2024-10-27"
 output: 
   html_document:
     toc: true
@@ -113,7 +113,7 @@ grade_v_score
 lets map average score by zip code: 
 ```{r}
 
-nyc_zip_codes = st_read("homework4_files/Modified Zip Code Tabulation Areas (MODZCTA)/geo_export_e426608c-b383-45c5-8f28-cc94eb8cc12f.shp") |>
+nyc_zip_codes = st_read("data/Modified Zip Code Tabulation Areas (MODZCTA)/geo_export_e426608c-b383-45c5-8f28-cc94eb8cc12f.shp") |>
   rename(zipcode = modzcta) |> 
     mutate(zipcode = as.integer(zipcode))|>
   st_transform(crs = 4326)

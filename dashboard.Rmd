@@ -43,7 +43,7 @@ inspect =
 Column {data-width=600}
 -----------------------------------------------------------------------
 
-### Map of NYC Showing Average Score by Zip Code
+### Map of NYC Shows Average Health Inspection Score by Zip Code
 
 ```{r, warning=FALSE, message=FALSE, echo =FALSE, include=FALSE}
 
