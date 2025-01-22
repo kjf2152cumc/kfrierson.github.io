@@ -1,7 +1,7 @@
 ---
 output: html_document
 ---
-I am almost done reading the fifth book of [George R.R. Martin's](https://georgerrmartin.com/grrm_book/a-dance-with-dragons/) series *A Song of Ice and Fire* most commonly known as "A Game of Thrones". 
+I am reading [Pathogenesis: A history of the world in eight plagues](https://en.wikipedia.org/wiki/Pathogenesis:_A_history_of_the_world_in_eight_plagues) by Jonathan Kennedy.
 <br>
 <br>
-<img src="images/DWD.jpg">
+<img src="images/pathogenesis.jpeg">
