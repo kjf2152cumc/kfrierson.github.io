@@ -1,7 +1,7 @@
 ---
 output: html_document
 ---
-I am reading [Pathogenesis: A history of the world in eight plagues](https://en.wikipedia.org/wiki/Pathogenesis:_A_history_of_the_world_in_eight_plagues) by Jonathan Kennedy.
+I am reading [The Berry Pickers](https://www.google.com/books/edition/The_Berry_Pickers/ayH9EAAAQBAJ?hl=en&gbpv=0) by Amanda Peters. 
 <br>
 <br>
-<img src="images/pathogenesis.jpeg">
+<img src="images/berrypickers.jpeg">
