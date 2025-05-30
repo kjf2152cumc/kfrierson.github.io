@@ -1,7 +1,7 @@
 ---
 output: html_document
 ---
-I am reading [The Berry Pickers](https://www.google.com/books/edition/The_Berry_Pickers/ayH9EAAAQBAJ?hl=en&gbpv=0) by Amanda Peters. 
+I am reading [Sunrise on the Reaping](https://www.goodreads.com/book/show/214331246-sunrise-on-the-reaping) by Suzanne Collins. 
 <br>
 <br>
-<img src="images/berrypickers.jpeg">
+<img src="images/sotr.jpeg">

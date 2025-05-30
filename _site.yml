@@ -5,14 +5,12 @@ navbar:
   right:
     - text: "Curriculum Vitae"
       href: about.html
-    - text: "P8105 Health Inspections Assignment"
+    - text: "My Graduate Thesis"
       href: background.html
-    - text: "Health Inspection Dashboard"
-      href: dashboard.html
     - text: "What is Kaleb Reading?"
       href: read.html
     - icon: fa-envelope fa-lg
-      href: mailto:<kjf2152@columbia.edu>
+      href: mailto:<kjf2152@caa.columbia.edu>
     - icon: fa-github fa-lg
       href: http://github.com/kjf2152cumc/
     

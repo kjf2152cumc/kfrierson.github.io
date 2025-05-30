@@ -6,9 +6,13 @@ output:
     toc_float: TRUE
 ---
 
-Hi there! I am a second year MPH student in Epidemiology at [Columbia University](https://www.publichealth.columbia.edu/academics/departments/epidemiology). I hold a Bachelor of Science in Biology from [SUNY Cortland](https://www2.cortland.edu/departments/biology/) and am licensed by the New York Health Department as an Advanced EMT. Throughout my undergraduate education, I worked in the [Dávalos lab](https://www2.cortland.edu/departments/biology/faculty/davalos.dot) investigating the individual and cumulative effects of multiple ecological stressors in forests of the Northeast. Now I am putting my public health education and research skills to work while developing a Master's Thesis with [Dr. Zachary Mannes](https://www.publichealth.columbia.edu/profile/zachary-l-mannes-phd#:~:text=Zachary%20Mannes%20is%20an%20Assistant,the%20Yale%20School%20of%20Medicine.). Alongside Dr. Mannes, an emergency care epidemiologist, I hope to characterize the prehospital needs of geriatric patients across NY. In May 2025, I will graduate from Columbia and plan to attend medical school the following fall. Outside of academia, I enjoy traveling, hiking, bird watching, reading, and collecting books. 
+Hi there! I am a recent graduate of the MPH program in Epidemiology at [Columbia University](https://www.publichealth.columbia.edu/academics/departments/epidemiology). I also hold a Bachelor of Science in Biology from [SUNY Cortland](https://www2.cortland.edu/departments/biology/) and am licensed by the New York Health Department as an Advanced EMT. Throughout my undergraduate education, I worked in the [Dávalos lab](https://www2.cortland.edu/departments/biology/faculty/davalos.dot) investigating the individual and cumulative effects of multiple ecological stressors in forests of the Northeast. 
+
+<br>
+
+My Master's Thesis, supervised by [Dr. Zachary Mannes](https://www.publichealth.columbia.edu/profile/zachary-l-mannes-phd#:~:text=Zachary%20Mannes%20is%20an%20Assistant,the%20Yale%20School%20of%20Medicine.), sought to explore associations between place-based social vulnerability and prehospital encounters among older adults. This summer I will be matriculating to medical school with the long-term goal of working as a physician-scientist. Outside of academia, I enjoy traveling, hiking, bird watching, reading, and collecting books. 
 <br>
 <br>
-<img src="images/kaleb2.jpg" style="width:75%; display: block; margin-left: auto; margin-right: auto;">
+<img src="images/638837704494248873.jpeg" style="width:75%; display: block; margin-left: auto; margin-right: auto;">
 <br>
 <br>

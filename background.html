@@ -11,7 +11,7 @@
 
 
 
-<title>Data Science Homework 4</title>
+<title>SVI &amp; Older Adult EMS Encounters</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -327,16 +327,13 @@ div.tocify {
   <a href="about.html">Curriculum Vitae</a>
 </li>
 <li>
-  <a href="background.html">P8105 Health Inspections Assignment</a>
-</li>
-<li>
-  <a href="dashboard.html">Health Inspection Dashboard</a>
+  <a href="background.html">My Graduate Thesis</a>
 </li>
 <li>
   <a href="read.html">What is Kaleb Reading?</a>
 </li>
 <li>
-  <a href="mailto:&lt;kjf2152@columbia.edu&gt;">
+  <a href="mailto:&lt;kjf2152@caa.columbia.edu&gt;">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -356,64 +353,13 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Data Science Homework 4</h1>
+<h1 class="title toc-ignore">SVI &amp; Older Adult EMS Encounters</h1>
 
 </div>
 
 
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
-<p>I created this website in part to complete an assignment for the <a
-href="https://p8105.com/index.html">P8105: Data Science I</a> class
-taught by Dr. Jeff Goldsmith. In addition to creating the website, I
-have been tasked with choosing one of three datasets and providing a
-dashboard of data visualizations the result from my curiosity.</p>
-<p>The NYC Department of Health makes public its scores and subsequent
-letter grades given to restaurants following health inspections.
-Increasing number scores and lower letter grades are associated with
-worse hazard to the public. Scores are integer values greater than or
-equal to zero. Letter grades are A, B, or C.</p>
-<p>They also publish violation information. Violations are are grouped
-into their own severity categories resulting in the scores listed:</p>
-<ul>
-<li><p>A public health hazard has a minimum score of 7</p></li>
-<li><p>A critical violation has a minimum score of 5</p></li>
-<li><p>A general violation has a minimum score of 2</p></li>
-</ul>
-<p>More information is available at the NYC Health <a
-href="https://a816-health.nyc.gov/ABCEatsRestaurants/#!/faq">Website</a>.
-Dr. Golsmith also published information about the dataset <a
-href="https://p8105.com/dataset_restaurant_inspections.html">here</a>.</p>
-</div>
-<div id="methods" class="section level2">
-<h2>Methods</h2>
-<p>I utilized the NYC restaurant inspection dataset from the
-<code>p8105.datasets</code> package. After loading the necessary
-libraries, I imported the dataset and cleaned it by removing rows with
-missing values and creating a new variable, violation_severity, that
-categorizes inspection scores into four levels: “Public Health Hazard,”
-“Critical Violation,” “General Violation,” and “No Violation.” I
-summarized the count of each violation type and visualized the
-distribution of scores using histograms with viridis colors for
-accessibility. Furthermore, I analyzed the relationship between previous
-health grades and inspection scores through boxplots. To assess spatial
-patterns, I mapped the average inspection scores by zip code using a <a
-href="https://data.cityofnewyork.us/Health/Modified-Zip-Code-Tabulation-Areas-MODZCTA-/pri4-ifjk/data">shapefile</a>
-of NYC zip codes, a color gradient indicates average scores.</p>
-<p>Click <a href="homework4.html">here</a> to view the R markdown
-document I used to import, manipulate, and visualize the data. You can
-also view the source code for the dashboard when visiting the <a
-href="https://kjf2152cumc.github.io/kfrierson.github.io/dashboard.html">Health
-Inspection Dashboard</a> page.</p>
-</div>
-<div id="some-brief-findings" class="section level2">
-<h2>Some Brief Findings</h2>
-<p>Restaurants with lower letter grade scores prior to the most recent
-inspection were more likely to have a poor health inspection score.
-Upper Manhattan and Northeast Queens had some of the worst inspection
-scores, on average. Among violations issued during inspections, most of
-them are public health hazards.</p>
-</div>
+<iframe src="images/2025_MPH_Thesis_Frierson_kjf2152.pdf" width="100%" height="600px">
+</iframe>
 
 
 

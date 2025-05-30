@@ -1,36 +1,10 @@
 ---
-title: "Data Science Homework 4"
+title: "SVI & Older Adult EMS Encounters"
 output: 
   html_document:
     toc: TRUE
     toc_float: TRUE
 ---
 
-## Introduction
-
-I created this website in part to complete an assignment for the [P8105: Data Science I](https://p8105.com/index.html) class taught by Dr. Jeff Goldsmith. In addition to creating the website, I have been tasked with choosing one of three datasets and providing a dashboard of data visualizations the result from my curiosity. 
-
-
-The NYC Department of Health makes public its scores and subsequent letter grades given to restaurants following health inspections. Increasing number scores and lower letter grades are associated with worse hazard to the public. Scores are integer values greater than or equal to zero. Letter grades are A, B, or C. 
-
-
-They also publish violation information. Violations are are grouped into their own severity categories resulting in the scores listed: 
-
- - A public health hazard has a minimum score of 7
-  
- - A critical violation has a minimum score of 5
+<iframe src="images/2025_MPH_Thesis_Frierson_kjf2152.pdf" width="100%" height="600px"></iframe>
  
- - A general violation has a minimum score of 2
-  
-More information is available at the NYC Health [Website](https://a816-health.nyc.gov/ABCEatsRestaurants/#!/faq). Dr. Golsmith also published information about the dataset [here](https://p8105.com/dataset_restaurant_inspections.html).
-
-
-## Methods
-
-I utilized the NYC restaurant inspection dataset from the `p8105.datasets` package. After loading the necessary libraries, I imported the dataset and cleaned it by removing rows with missing values and creating a new variable, violation_severity, that categorizes inspection scores into four levels: "Public Health Hazard," "Critical Violation," "General Violation," and "No Violation." I summarized the count of each violation type and visualized the distribution of scores using histograms with viridis colors for accessibility. Furthermore, I analyzed the relationship between previous health grades and inspection scores through boxplots. To assess spatial patterns, I mapped the average inspection scores by zip code using a [shapefile](https://data.cityofnewyork.us/Health/Modified-Zip-Code-Tabulation-Areas-MODZCTA-/pri4-ifjk/data) of NYC zip codes, a color gradient indicates average scores. 
-
-Click [here](homework4.html) to view the R markdown document I used to import, manipulate, and visualize the data. You can also view the source code for the dashboard when visiting the [Health Inspection Dashboard](https://kjf2152cumc.github.io/kfrierson.github.io/dashboard.html) page. 
-
-## Some Brief Findings
-
-Restaurants with lower letter grade scores prior to the most recent inspection were more likely to have a poor health inspection score. Upper Manhattan and Northeast Queens had some of the worst inspection scores, on average. Among violations issued during inspections, most of them are public health hazards. 
