@@ -6,6 +6,6 @@ output:
     toc_float: TRUE
 ---
 
-<iframe src="images/Frierson_Kaleb_CV.pdf" width="100%" height="600px"></iframe>
+<iframe src="images/CV_MD.pdf" width="100%" height="600px"></iframe>
 
 
