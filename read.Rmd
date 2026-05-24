@@ -1,7 +1,8 @@
 ---
 output: html_document
 ---
-I am reading [Sunrise on the Reaping](https://www.goodreads.com/book/show/214331246-sunrise-on-the-reaping) by Suzanne Collins. 
+I am reading two books: [An Elegant Defense](https://www.goodreads.com/en/book/show/41806641-an-elegant-defense) by Matt Richtel and [The Overstory ](https://www.goodreads.com/en/book/show/40180098-the-overstory) by Richard Powers
 <br>
 <br>
-<img src="images/sotr.jpeg">
+<img src="images/eleg.jpeg">
+<img src="images/over.jpeg"> 
